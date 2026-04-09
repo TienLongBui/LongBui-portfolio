@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applied Data Wrangling, ML & Deep Learning | Long Tien Bui</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-pastel-flow">
+  <div class="container">
+    <header class="header">
+      <h1><a href="index.html" class="logo-link">Long Tien Bui</a></h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="detail-page">
+      <section class="detail-card reveal">
+        <h1>Applied Data Wrangling, ML & Deep Learning</h1>
+        <p class="detail-subtitle">
+          <a href="https://handbook.monash.edu/2024/units/FIT5196?year=2024" target="_blank" rel="noopener noreferrer">FIT5196</a>
+          ·
+          <a href="https://handbook.monash.edu/2024/units/FIT5201?year=2024" target="_blank" rel="noopener noreferrer">FIT5201</a>
+          ·
+          <a href="https://handbook.monash.edu/2024/units/FIT5215?year=2024" target="_blank" rel="noopener noreferrer">FIT5215</a>
+          · Monash University | Feb 2024 – Oct 2024
+        </p>
+
+        <img src="assets/ml1.png" alt="Applied Data Wrangling, Machine Learning and Deep Learning projects" class="detail-image" />
+
+        <h2>Overview</h2>
+        <p>
+          An end-to-end series of individual and pair projects across Monash's FIT5196 (Data Wrangling),
+          FIT5201 (Machine Learning), and FIT5215 (Deep Learning) units — covering the full pipeline from
+          raw, messy data all the way through classical classifiers and modern sequence models.
+        </p>
+
+        <h2>What was the challenge?</h2>
+        <p>
+          Real-world ML rarely starts with a clean dataset. The goal across these projects was to build a
+          disciplined workflow — from wrangling raw text and transactional data, through classical models,
+          to deep learning architectures — where every step was rigorously validated, compared, and reasoned
+          about from first principles.
+        </p>
+
+        <h2>What I did</h2>
+        <ul>
+          <li><strong>Text Wrangling & NLP Pipeline (FIT5196 A1):</strong> Built an end-to-end text-extraction pipeline over raw YouTube comment data — parsing nested JSON snippets with regex, removing emojis via custom lists and the <code>emoji</code> library, detecting language, filtering English comments, and tokenising output for downstream vectorisation.</li>
+          <li><strong>Dirty Data, Outliers & Missing Value Handling (FIT5196 A2):</strong> Cleaned a multi-column order/customer dataset through a three-dataframe Agile-style workflow — fixing date, branch_code, lat/lon, order_type, order_items, order_price, and distance columns; detecting outliers; imputing missing values with linear regression; and reshaping data with Z-score and Min/Max normalisation.</li>
+          <li><strong>Perceptron vs. Neural Networks (FIT5201):</strong> Compared linear perceptrons against MLPs on 2D classification tasks, analysing decision boundaries and generalisation behaviour with scikit-learn.</li>
+          <li><strong>Semi-Supervised Learning (FIT5201):</strong> Built a pipeline combining labelled and unlabelled data, training neural networks with PyTorch and evaluating against a held-out test set.</li>
+          <li><strong>Deep Neural Networks from Scratch (FIT5215 A1):</strong> Implemented feed-forward networks, backpropagation, activation functions, and optimisation in PyTorch — scoring 89/100.</li>
+          <li><strong>RNNs for Question Classification (FIT5215 A2):</strong> Designed a modular <code>BaseRNN</code> supporting GRU, LSTM, and vanilla RNN cells with configurable depth and embedding sizes, classifying questions into 6 categories (ABBR, ENTY, DESC, HUM, LOC, NUM).</li>
+          <li><strong>Transformers with BERT (FIT5215 A2):</strong> Fine-tuned Transformer architectures using the HuggingFace BERT tokenizer for the same question-classification task — part of the 96/100 submission.</li>
+        </ul>
+
+        <h2>Tools & skills</h2>
+        <p>Python · pandas · NumPy · scikit-learn · PyTorch · HuggingFace Transformers · regex · NLP preprocessing · Data Cleaning · Outlier Detection · Missing Value Imputation · Feature Engineering · Model Evaluation · RNN / LSTM / GRU / Transformer architectures</p>
+
+        <h2>Outcome</h2>
+        <p>
+          These projects strengthened my ability to move fluently across the full ML lifecycle — from raw,
+          messy data through to state-of-the-art sequence models — and reinforced that good machine learning
+          starts well before the model itself, with the data and the question you're really trying to answer.
+        </p>
+
+        <div class="project-links" style="margin-top: 2rem;">
+          <a href="index.html#projects" class="hero-button">
+            <i class="fas fa-arrow-left"></i> Back to Projects
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Built by Long Tien Bui © 2026
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

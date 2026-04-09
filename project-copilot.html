@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solstice Assistant – World Vision Australia | Long Tien Bui</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-pastel-flow">
+  <div class="container">
+    <header class="header">
+      <h1><a href="index.html" class="logo-link">Long Tien Bui</a></h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="detail-page">
+      <section class="detail-card reveal">
+        <h1>Solstice Assistant – AI Copilot for World Vision</h1>
+        <p class="detail-subtitle">Technical Owner · World Vision Australia (FMNR Team) | 2025</p>
+
+        <img src="assets/copilot3.png" alt="Solstice Assistant Copilot agent for World Vision Australia" class="detail-image" />
+
+        <h2>Overview</h2>
+        <p>
+          The Solstice Assistant is a production-ready Microsoft Copilot Studio agent I designed and
+          deployed for World Vision Australia's FMNR (Farmer-Managed Natural Regeneration) team. It helps
+          Field Office staff across WVA and WVI onboard to the Solstice.world data-management platform
+          through a conversational self-service console embedded directly inside SharePoint and Microsoft Teams.
+        </p>
+
+        <div class="detail-gallery">
+          <img src="assets/copilot4.png" alt="Solstice Assistant conversation flow" class="detail-image" />
+          <img src="assets/copilot5.png" alt="Solstice Assistant conversation flow" class="detail-image" />
+        </div>
+
+        <h2>What was the challenge?</h2>
+        <p>
+          Field Office staff – often with limited time, non-technical backgrounds, and English as a second
+          language – were relying on ad-hoc support from the WVA FMNR team every time they hit an issue with
+          Solstice: creating accounts, configuring sites, running surveys, syncing offline data, or building
+          visualisations. Knowledge was fragmented across SharePoint folders, user guides, and tribal knowledge,
+          which slowed onboarding and created recurring data-quality issues from the field.
+        </p>
+
+        <h2>What I did</h2>
+        <ul>
+          <li>Designed the end-to-end agent architecture in Microsoft Copilot Studio, covering 15+ conversation topics spanning account setup, troubleshooting, sites, indicators, surveys, mobile app, offline & sync, and visualisations.</li>
+          <li>Authored a grounded system prompt defining mission, scope, answer construction rules, fallback behaviour, and a semantic-search strategy over verified SharePoint and Solstice Help Center sources only — preventing hallucinations.</li>
+          <li>Built rich Adaptive Cards (JSON) for interactive responses — embedding resource links, app-store download buttons, conditional follow-up questions, and email-escalation flows via Power Automate.</li>
+          <li>Structured an FAQ knowledge base (FMNR_FAQs.xlsx) with question / short-answer / source-link columns, integrated as the primary retrieval layer before fallback web search.</li>
+          <li>Wrote a complete Knowledge Transfer Handbook so the FMNR team can replicate, maintain, and extend the agent in ~90 minutes without my involvement.</li>
+          <li>Defined success metrics for a two-phase rollout: internal WVA pilot (≥70% answer usefulness) followed by a partnership rollout to WVI (≥80% satisfaction).</li>
+        </ul>
+
+        <div class="detail-gallery">
+          <img src="assets/copilot1.png" alt="Solstice Assistant conversation flow" class="detail-image" />
+          <img src="assets/copilot2.png" alt="Adaptive Card interactive response" class="detail-image" />
+        </div>
+
+        <h2>Tools & skills</h2>
+        <p>Microsoft Copilot Studio · Adaptive Cards (JSON) · Power Automate · SharePoint · Microsoft Teams · Prompt Engineering · Conversational AI Design · Knowledge Base Structuring · Technical Documentation</p>
+
+        <h2>Outcome</h2>
+        <p>
+          The Solstice Assistant went live in production as WVA's pilot test for future agent integration,
+          giving field staff instant, consistent guidance without depending on the support team. Beyond the
+          tool itself, the project established a reusable template — documentation, configuration handbook,
+          and governance pattern — that WVA can apply to automate other internal knowledge workflows.
+        </p>
+
+        
+        <a href="index.html#projects" class="hero-button">← Back to Projects</a>
+      </section>
+    </main>
+
+    <footer>
+      Built by Long Tien Bui © 2026
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

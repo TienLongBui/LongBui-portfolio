@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Long Tien Bui | Portfolio</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-pastel-flow">
+  <div class="container">
+    <header class="header">
+      <h1><a href="index.html" class="logo-link">Long Tien Bui</a></h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#explorations">Explorations</a></li>
+          <!-- <li><a href="#experience">Experience</a></li> -->
+          <!-- <li><a href="#media">Media</a></li> -->
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+<!-- MAIN -->
+
+    <main>
+      <section class="hero reveal">
+        <div class="hero-content">
+          <h1>Hey there, I'm Long!</h1>
+          <h3>Data Analyst & BI Graduate</h3>
+          <p>
+            I'm a Master of Data Science graduate based in Melbourne, Australia. <br />
+            I have hands-on experience in reporting, dashboard development, and cross-functional operational support. <br />
+            I enjoy turning multi-source data into structured insights that help teams make clearer decisions.
+          </p>
+          <div class="hero-stack">
+            <span class="stack-label">Tools I work with</span>
+            <div class="stack-logos">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" />
+              <img src="assets/icons/sqls.svg" alt="SQL Server" title="SQL Server" />
+              <img src="assets/icons/pbi.svg" alt="Power BI" title="Power BI" />
+              <img src="assets/icons/tableau.svg" alt="Tableau" title="Tableau" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R" title="R" />
+            </div>
+          </div>
+          <a href="#projects" class="hero-button">See My Work</a>
+        </div>
+        <!-- <img src="hero.png" alt="Portrait of Long Tien Bui" class="hero-image" /> -->
+                 <img
+          src="assets/hero.png"
+          alt="Portrait of Long Tien Bui — click to learn more"
+          class="hero-image"
+          id="heroImage"
+          role="button"
+          tabindex="0"
+        />
+      </section>
+
+      <section class="projects reveal" id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-container">
+
+
+<!-- FIT5120 – Low Carbon -->
+
+          <div class="project-item">
+            <img class="project-image" src="assets/low-carbon.png" alt="MelEcoNest low-carbon lifestyle platform" />
+            <div class="project-content">
+              <h3>MelEcoNest — Low-Carbon Lifestyle Platform</h3>
+              <div class="project-text">
+                Agile capstone team project delivering a sustainability platform that helps Melbourne apartment residents reduce their carbon footprint. I designed the data architecture, governance and versioning approach, plus a Streamlit dashboard visualising team dynamics and feedback loops. <br />
+                <strong>Tech:</strong> MySQL, Streamlit, Agile, Data Governance
+              </div>
+              <div class="project-links">
+                <a href="https://bit.ly/meleconest" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <i class="fas fa-external-link-alt"></i> Live Site
+                </a>
+                <a href="project-low-carbon.html" class="project-button">
+                  <i class="fas fa-file-alt"></i> View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+<!-- WVA Solstice Copilot -->
+
+          <div class="project-item">
+            <img class="project-image" src="assets/copilot3.png" alt="World Vision Solstice Copilot assistant" />
+            <div class="project-content">
+              <h3>Solstice Assistant — AI Copilot for World Vision</h3>
+              <div class="project-text">
+                Designed and deployed a production Microsoft Copilot Studio agent for World Vision Australia's FMNR team, helping field staff onboard to the Solstice.world data platform via conversational self-service inside SharePoint and Teams. Covered 15+ topics with grounded prompts and Adaptive Cards. <br />
+                <strong>Tech:</strong> Copilot Studio, Adaptive Cards, Power Automate, SharePoint
+              </div>
+              <div class="project-links">
+                <a href="project-copilot.html" class="project-button">
+                  <i class="fas fa-file-alt"></i> View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+<!-- ML + Deep Learning -->
+
+          <div class="project-item">
+            <img class="project-image" src="assets/ml1.png" alt="Applied machine learning and deep learning project" />
+            <div class="project-content">
+              <h3>Applied Data Wrangling, ML & Deep Learning</h3>
+              <div class="project-text">
+                Built and evaluated ML and deep learning models across structured and sequential datasets, including perceptron vs. neural networks, semi-supervised learning, and RNN/LSTM/Transformer architectures for text classification. Achieved <strong>96/100</strong> on Deep Learning Assignment 2. <br />
+                <strong>Tech:</strong> Python, PyTorch, scikit-learn, HuggingFace Transformers
+              </div>
+              <div class="project-links">
+                <a href="project-ml-data-wrangling.html" class="project-button">
+                  <i class="fas fa-file-alt"></i> View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+<!-- EXPLORATION -->
+
+      <section class="projects reveal explorations-section" id="explorations">
+        <h2>Selected Explorations</h2>
+        <p class="section-intro">
+          Smaller studies, experiments, and side explorations that reflect how I think through data,
+          tools, and communication beyond larger portfolio projects.
+        </p>
+
+        <div class="projects-container explorations-grid">
+
+          <div class="project-item exploration-card">
+            <div class="project-content">
+              <h3>SQL Server & Power BI - AdventureWorksDW</h3>
+              <div class="project-text">
+                Working through joins, aggregations, window functions, and business-style queries to build stronger intuition for structured data analysis. <em>In progress.</em> <br />
+                <strong>Tech:</strong> SQL Server, T-SQL
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-button">
+                  <i class="fas fa-file-alt"></i> Coming Soon
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item exploration-card">
+            <div class="project-content">
+              <h3>Peer-Reviewed Publication</h3>
+              <div class="project-text">
+                Co-authored study on digital transformation adoption in Vietnamese higher education, extending the UTAUT framework with Perceived Security across 5 universities. Published in the <em>Journal of Economics and Sustainable Development</em> (2021). <br />
+                <strong>Tech:</strong> SPSS, Multiple Regression, Survey Design, UTAUT
+              </div>
+              <div class="project-links">
+                <a href="project-research.html" class="project-button">
+                  <i class="fas fa-file-alt"></i> View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item exploration-card">
+            <div class="project-content">
+              <h3>Tableu & R Shiny Dashboard</h3>
+              <div class="project-text">
+                Narrative visualisation dashboard exploring 2023 Data Science salaries, specialisations, geographical distribution, and remote-work trends — designed for students, professionals, and curriculum planners. <br />
+                <strong>Tech:</strong> R, Shiny, ggplot2
+              </div>
+              <div class="project-links">
+                <a href="project-labour-market.html" class="project-button">
+                  <i class="fas fa-file-alt"></i> View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+<!-- HIDDEN EXPLORATION -->
+        
+          <div class="project-item exploration-card exploration-hidden">
+            <div class="project-content">
+              <h3>Predictive Modelling in R</h3>
+              <div class="project-text">
+                End-to-end regression pipeline comparing linear, stepwise, GLM, decision tree, random forest, Lasso/Ridge, XGBoost, and neural network models on a Kaggle-style prediction task. <br />
+                <strong>Tech:</strong> R, XGBoost, Random Forest, Lasso, Neural Networks
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-button">
+                  <i class="fas fa-file-alt"></i> Coming Soon
+                </a>
+              </div>
+            </div>
+          </div>
+
+<!-- HIDDEN EXPLORATION -->
+
+          <div class="project-item exploration-card exploration-hidden">
+            <div class="project-content">
+              <h3>Streamlit Dashboards</h3>
+              <div class="project-text">
+                Short exploratory analyses focused on patterns, anomalies, and simple business questions using compact datasets. <br />
+                <strong>Tech:</strong> Python, Pandas, Visualisation
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-button">
+                  <i class="fas fa-file-alt"></i> Coming Soon
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item exploration-card exploration-hidden">
+            <div class="project-content">
+              <h3>Looker Studio</h3>
+              <div class="project-text">
+                Collected interface and reporting ideas around layout, visual hierarchy, clarity, and storytelling for dashboard users. <br />
+                <strong>Tech:</strong> Power BI, Tableau, UX Thinking
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-button">
+                  <i class="fas fa-file-alt"></i> Coming Soon
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="exploration-toggle-wrap">
+          <button id="toggleExplorations" class="hero-button exploration-toggle-button" type="button">
+            Show More
+          </button>
+        </div>
+      </section>
+
+<!-- Experience -->
+
+      <!-- <section class="projects reveal" id="experience">
+        <h2>Experience</h2>
+        <div class="projects-container">
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>Data & Operations Analyst Intern</h3>
+              <div class="project-text">
+                <strong>World Vision Australia</strong><br />
+                Developed and maintained Power BI dashboards, coordinated periodic and ad hoc reporting, standardised templates, and maintained SharePoint documentation to improve reporting consistency and auditability. Also designed and deployed the Solstice Copilot assistant for the FMNR team.
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>News Analyst, Collaborator</h3>
+              <div class="project-text">
+                <strong>Vietnam Television | VTV Digital</strong><br />
+                Monitored economic and financial indicators, analysed market developments and audience trends, and translated findings into concise insights for editors and presenters.
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>Quantitative Research Assistant</h3>
+              <div class="project-text">
+                <strong>Ministry of Industry and Trade</strong><br />
+                Conducted hypothesis testing and multivariate analysis, streamlined survey data preparation with Excel and SPSS, and summarised evidence for internal reports used by senior officials.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+ -->
+ <!-- GRAPHIC VIDEOS-->
+
+<!-- <section class="projects reveal" id="media">
+        <h2>Media & Presentations</h2>
+        <div class="projects-container">
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>MelEcoNest — Project Pitch Video</h3>
+              <div class="project-text">
+                10-minute pitch video for FIT5120 Industry Experience capstone, walking through the MelEcoNest low-carbon lifestyle platform from problem framing to solution demo. Includes a full video treatment document covering script, visuals, and audience justification. <br />
+                <strong>Role:</strong> Script, presentation, editing
+              </div>
+              <div class="project-links">
+                <a href="https://www.youtube.com/watch?v=MhVeVIpKo0o" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <i class="fab fa-youtube"></i> Watch on YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>EEG Research Pitch — Investor Video</h3>
+              <div class="project-text">
+                Investor pitch video produced for FIT IT Research Methods, presenting a Monash EEG research project on predicting learners' emotional and motivational states to improve self-regulated learning. Delivered with a structured video treatment and scripted narration. <br />
+                <strong>Role:</strong> Script, narration, editing
+              </div>
+              <div class="project-links">
+                <a href="https://www.youtube.com/watch?v=4sWQwEgliHQ" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <i class="fab fa-youtube"></i> Watch on YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>World Vision Australia — Internal Event Videos</h3>
+              <div class="project-text">
+                Two-part internal event video series produced, filmed, and edited for a World Vision Australia staff event. Covered planning, on-site filming, and post-production editing to deliver a polished sequence suitable for all-staff communication. <br />
+                <strong>Role:</strong> Filming, editing, post-production
+              </div>
+              <div class="project-links">
+                <a href="https://www.youtube.com/watch?v=2dFCC1VwDQs" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <i class="fab fa-youtube"></i> Part 1
+                </a>
+                <a href="https://www.youtube.com/watch?v=GbZlNA-CEuI" target="_blank" rel="noopener noreferrer" class="project-button">
+                  <i class="fab fa-youtube"></i> Part 2
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section> -->
+
+<!-- EDUCATION
+
+      <section class="projects reveal" id="education">
+        <h2>Education</h2>
+        <div class="projects-container">
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>Master of Data Science</h3>
+              <div class="project-text">
+                <strong>Monash University</strong> — Melbourne, Australia<br />
+                Faculty of Information Technology · 2023 – 2025<br />
+                <strong>Key units:</strong> Deep Learning (FIT5215), Machine Learning (FIT5201), Data Exploration & Visualisation (FIT5147), Data Wrangling (FIT5196), Professional Practice (FIT5122).
+              </div>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-content">
+              <h3>Bachelor of International Business Management</h3>
+              <div class="project-text">
+                <strong>National Economics University (NEU)</strong> — Hanoi, Vietnam<br />
+                School of Advanced Educational Programs<br />
+                <strong>Key units:</strong> Organisational Behaviour, Behavioral Research Methods, FDI Company & Joint Venture Management.
+                Bachelor thesis completed alongside peer-reviewed research on digital transformation adoption in higher education.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section> -->
+
+
+      <section class="contact reveal" id="contact">
+        <h2>Contact Me</h2>
+        <p>
+          Master of Data Science, Monash University. <br />
+          <!-- Based in Melbourne, VIC. <br /> -->
+          Open to analyst, reporting, and BI-focused opportunities.
+        </p>
+        <div class="contact-buttons">
+          <a href="mailto:longbui.au@outlook.com" class="contact-button email">
+            <i class="fas fa-envelope"></i> Email Me
+          </a>
+          <a href="https://github.com/tienlongbui" target="_blank" rel="noopener noreferrer" class="contact-button github">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/tienlongbui/" target="_blank" rel="noopener noreferrer" class="contact-button linkedin">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- HERO MODAL -->
+<div class="hero-modal" id="heroModal" aria-hidden="true" role="dialog" aria-labelledby="heroModalTitle">
+  <div class="hero-modal-backdrop" data-close></div>
+  <div class="hero-modal-card" role="document">
+    <button class="hero-modal-close" data-close aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <h2 id="heroModalTitle">A bit more about me</h2>
+
+    <div class="hero-modal-tabs" role="tablist">
+      <!-- <button class="hero-tab active" data-tab="about" role="tab" aria-selected="true">About</button> -->
+      <!-- <button class="hero-tab" data-tab="mbti" role="tab" aria-selected="false">MBTI</button> -->
+      <button class="hero-tab" data-tab="education" role="tab" aria-selected="false">Education</button>
+      <button class="hero-tab" data-tab="experience" role="tab" aria-selected="false">Experience</button>
+      <button class="hero-tab" data-tab="fun" role="tab" aria-selected="false">Fun Facts</button>
+    </div>
+
+    <!-- <div class="hero-modal-body">
+      <div class="hero-tab-panel active" data-panel="about">
+        <p>
+          I'm Long, a Master of Data Science graduate based in Melbourne. I care about turning
+          messy data into clear decisions and building things — from dashboards to AI assistants —
+          that teams actually use. Outside work, I'm curious about sustainability, storytelling,
+          and travel.
+        </p>
+      </div> -->
+
+      <!-- <div class="hero-tab-panel" data-panel="education"> -->
+      <div class="hero-modal-body">
+      <div class="hero-tab-panel active" data-panel="education">
+        <ul>
+          <li><strong>Master of Data Science — Monash University, Melbourne (2023 – 2025)</strong></li>
+                  <p>
+          Faculty of Information Technology<br />
+                <strong>Key units:</strong> Deep Learning (FIT5215), Machine Learning (FIT5201), Data Exploration & Visualisation (FIT5147), Data Wrangling (FIT5196), Professional Practice (FIT5122).
+                  </p>
+          <li><strong>Bachelor of International Business — National Economics University, Hanoi (2018 - 2022)</strong></li>
+          <p>
+            School of Advanced Educational Programs<br />
+                <strong>Key units:</strong> Organisational Behaviour, Behavioral Research Methods, FDI Company & Joint Venture Management.
+          </p>
+        </ul>
+        <p>
+          <!-- Key areas: Deep Learning, Machine Learning, Data Wrangling, Data Visualisation, Professional Practice. -->
+        </p>
+      </div>
+
+      <div class="hero-tab-panel" data-panel="experience">
+        <ul>
+          <li><strong>Data & Operations Analyst Intern</strong> — World Vision Australia</li>
+          <li><strong>News Analyst, Collaborator</strong> — Vietnam Television (VTV Digital)</li>
+          <li><strong>Quantitative Research Assistant</strong> — Ministry of Industry and Trade</li>
+        </ul>
+        <!-- <p>See the Experience section below for more detail.</p> -->
+      </div>
+
+      <div class="hero-tab-panel" data-panel="fun">
+        <ul>
+          <li>Co-authored a peer-reviewed paper during undergrad.</li>
+          <li>Shoot and edit my own video projects.</li>
+          <li>Always on the hunt for a good coffee in Melbourne.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer>
+      Built by Long Tien Bui © 2026
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
