@@ -853,3 +853,86 @@ body.modal-open {
 		height: 24px;
 	}
 }
+
+.edu-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.edu-item:last-child {
+  border-bottom: none;
+}
+
+.edu-item h3 {
+  margin: 0 0 2px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.edu-item h3 span {
+  font-weight: 600;
+  color: #666;
+}
+
+.edu-faculty {
+  margin: 0 0 12px;
+  color: #666;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.edu-item p {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
+
+.exp-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.exp-item:last-child {
+  border-bottom: none;
+}
+
+.exp-item h3 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.exp-item h3 span {
+  font-weight: 500;
+  color: #666;
+}
+
+.exp-item p {
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
+}
+
+.funfact-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.funfact-item:last-child {
+  border-bottom: none;
+}
+
+.funfact-item h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.funfact-item p {
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
+}
