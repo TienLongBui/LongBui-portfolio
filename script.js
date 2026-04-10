@@ -57,9 +57,12 @@ if (heroImage && heroModal) {
   });
 }
 
-// ===== Staggered card reveal (Explorations) =====
+// ===== Staggered card reveal (Explorations only — exclude carousel track) =====
 (function () {
-  const grids = document.querySelectorAll('.projects-container');
+  // FIX #2: Only apply stagger to grids that are NOT the carousel track.
+  // The carousel inserts/removes clones on resize, causing re-animation (opacity 0)
+  // on newly added clones every time setupClones() runs.
+  const grids = document.querySelectorAll('.projects-container:not(.carousel-track)');
   const staggerObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -180,6 +183,13 @@ if (heroImage && heroModal) {
 
   /* ---- Core goTo ---- */
   function goTo(index, animate = true) {
+    // FIX #3: Guard against offsetWidth = 0 (track not yet laid out).
+    // If width hasn't been computed yet, skip silently — init() will retry on resize/load.
+    const firstChild = track.children[0];
+    if (!firstChild) return;
+    const rawWidth = firstChild.offsetWidth;
+    if (rawWidth <= 0) return;
+
     // Set / remove transition
     track.style.transition = animate
       ? 'transform 0.58s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
@@ -189,7 +199,7 @@ if (heroImage && heroModal) {
 
     // Gap = 24px (1.5rem). Item width comes from the rendered element.
     const gap       = 24;
-    const itemWidth = track.children[0].offsetWidth + gap;
+    const itemWidth = rawWidth + gap;
     track.style.transform = `translateX(${-(currentIndex * itemWidth)}px)`;
 
     if (!animate) {
@@ -211,7 +221,12 @@ if (heroImage && heroModal) {
   }
 
   /* ---- Infinite loop jump (called after CSS transition ends) ---- */
-  track.addEventListener('transitionend', () => {
+  // FIX #1: Filter to ONLY react to transitions that originated on the track itself,
+  // not on child cards (hover transform, etc.) which bubble up and can cause
+  // spurious re-jumps or layout recalculations at wrong moments.
+  track.addEventListener('transitionend', (e) => {
+    if (e.target !== track) return;      // ignore bubbled events from child cards
+    if (e.propertyName !== 'transform') return; // only care about the slide transform
     if (!isInfinite) return;
 
     if (currentIndex >= N * 2) {
