@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistical Data Modelling | Long Tien Bui</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-pastel-flow">
+  <div class="container">
+    <header class="header">
+      <h1><a href="index.html" class="logo-link">Long Tien Bui</a></h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="detail-page">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb reveal">
+        <a href="index.html"><i class="fas fa-house"></i> Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="index.html#explorations">Explorations</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Statistical Data Modelling</span>
+      </div>
+
+      <section class="detail-card reveal">
+        <h1>Predicting Wellbeing &amp; Anxiety from Survey Data</h1>
+        <p class="detail-subtitle">
+          <a href="https://handbook.monash.edu/2024/units/FIT5197?year=2024" target="_blank" rel="noopener noreferrer">FIT5197</a>
+          · Statistical Data Modelling · Monash University | Jul 2024 – Nov 2024
+        </p>
+
+        <img src="assets/stats1.png" alt="Statistical Data Modelling project" class="detail-image" />
+
+        <h2>Overview</h2>
+        <p>
+          An end-to-end statistical modelling project built entirely in R, covering both a regression task
+          (predicting an individual's <code>happiness</code> score) and a 5-class classification task
+          (predicting <code>alwaysAnxious</code>) from ~70 life-and-wellbeing survey questions. Both tasks
+          were submitted to a live Kaggle competition, with models iteratively refined against the public
+          leaderboard.
+        </p>
+
+        <h2>What was the challenge?</h2>
+        <p>
+          The assignment imposed two non-trivial constraints: core statistical methods had to be implemented
+          <strong>from first principles without external libraries</strong>, and the classification target was
+          heavily imbalanced across five ordinal classes. The goal was to move beyond "throw a model at it"
+          and reason carefully about predictor significance, regularisation, resampling, and hyperparameter
+          behaviour — then defend every choice on the leaderboard.
+        </p>
+
+        <h2>What I did</h2>
+        <ul>
+          <li><strong>Multiple Linear Regression from scratch:</strong> Fit a full linear model on ~70 survey predictors, then wrote R code to automatically extract significant predictors at α = 0.01 and rank the Top 5 strongest by t-statistic — no <code>broom</code> or helper libraries.</li>
+          <li><strong>Feature engineering &amp; diagnostics:</strong> Derived interpretable features (e.g. BMI from height/weight), inspected residuals, and pruned predictors based on significance and collinearity.</li>
+          <li><strong>Regularised regression:</strong> Implemented and compared Lasso regression to handle the high-dimensional predictor space, using cross-validation to select the penalty term.</li>
+          <li><strong>Tree-based ensembles:</strong> Trained Random Forest and XGBoost regressors, tuned <code>max_depth</code>, <code>eta</code>, <code>nrounds</code>, and L1/L2 regularisation, and tracked each configuration against the Kaggle public score.</li>
+          <li><strong>Imbalanced multi-class classification:</strong> For the <code>alwaysAnxious</code> target (5 ordinal classes), applied <code>upSample</code> to rebalance the training distribution and compared it against SMOTE-family approaches.</li>
+          <li><strong>XGBoost multi-class tuning:</strong> Built a <code>multi:softmax</code> XGBoost classifier, systematically sweeping <code>max_depth</code> (3–10) and L1/L2 penalties, and documenting that aggressive regularisation <em>hurt</em> performance in this regime — an experimental finding worth more than the final score itself.</li>
+          <li><strong>Reproducibility:</strong> Seeded every stochastic step, wrote a clean marker-facing entry point for local datasets, and maintained a referenced bibliography of every technique and source consulted.</li>
+        </ul>
+
+        <h2>Tools &amp; skills</h2>
+        <p>
+          R · Multiple Linear Regression · Lasso · Random Forest · XGBoost · Cross-Validation ·
+          Hyperparameter Tuning · Imbalanced Data (upSample / SMOTE) · Feature Engineering ·
+          Model Diagnostics · Kaggle Competition Workflow
+        </p>
+
+        <h2>Outcome</h2>
+        <p>
+          The project reinforced that statistical modelling is as much about <em>disciplined experimentation</em>
+          as it is about algorithms — knowing when a more complex model (or heavier regularisation) actively
+          hurts, and being able to justify the final pick with evidence from both cross-validation and the
+          leaderboard. It also deepened my fluency in R as a first-class modelling language alongside Python.
+        </p>
+
+        <div class="project-links" style="margin-top: 2rem;">
+          <a href="index.html#projects" class="hero-button">
+            <i class="fas fa-arrow-left"></i> Back to Projects
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Built by Long Tien Bui © 2026
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/tienlongbui/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/tienlongbui" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
