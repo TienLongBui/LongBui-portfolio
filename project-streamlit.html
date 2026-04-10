@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streamlit Dashboards — Long Tien Bui</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      color: #1d1d1f;
+      background: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Inter, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    @keyframes pastel-pan {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .bg-pastel-flow {
+      background: linear-gradient(120deg, #fbfbfd 0%, #f2f1ff 25%, #eef8ff 50%, #fff3f8 75%, #fff1f1 100%);
+      background-size: 400% 400%;
+      animation: pastel-pan 18s ease-in-out infinite;
+      min-height: 100vh;
+    }
+    .header {
+      display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+      position: sticky; top: 0; z-index: 100; width: 100vw;
+      margin-left: calc(50% - 50vw);
+      padding-top: 1rem; padding-bottom: 1rem;
+      padding-left: max(24px, calc((100vw - 1120px) / 2 + 24px));
+      padding-right: max(24px, calc((100vw - 1120px) / 2 + 24px));
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .header h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.03em; }
+    .logo-link, .logo-link:visited, .logo-link:hover, .logo-link:active { color: #1d1d1f; text-decoration: none; display: inline-block; }
+    .nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    .nav a { position: relative; text-decoration: none; color: #1d1d1f; font-weight: 600; font-size: 1rem; transition: color 0.2s ease; }
+    .nav a::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: #0071e3; transition: width 0.25s ease; border-radius: 999px; }
+    .nav a:hover::after { width: 100%; }
+    .nav a:hover { color: #0071e3; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .page { padding: 3.5rem 0 5rem; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #86868b; margin-bottom: 2.5rem; }
+    .breadcrumb a { color: #0071e3; text-decoration: none; font-weight: 500; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb i { font-size: 0.7rem; }
+    .page-heading { margin-bottom: 2.5rem; }
+    .eyebrow { display: block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #86868b; margin-bottom: 0.55rem; }
+    .page-heading h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 750; letter-spacing: -0.04em; line-height: 1.0; color: #1d1d1f; margin-bottom: 1rem; }
+    .page-heading p { font-size: 1.06rem; color: #424245; max-width: 640px; line-height: 1.75; }
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 760px) { .dash-grid { grid-template-columns: 1fr; } }
+    .project-item {
+      background: rgba(255,255,255,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,0.06); border-radius: 24px; display: flex; flex-direction: column;
+      overflow: hidden; box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .project-item:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.10); border-color: rgba(0,113,227,0.18); }
+
+    /* ── Card banner ── */
+    .card-banner {
+      width: 100%; height: 190px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem; position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .banner-esg   { background: linear-gradient(135deg, #eef8ff 0%, #e4efff 100%); }
+    .banner-retro { background: #000; }  /* fallback while image loads */
+
+    /* The image fills the banner exactly */
+    .card-banner img.banner-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+
+    .card-banner-label {
+      position: absolute; bottom: 12px; right: 14px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 999px;
+      background: rgba(255,255,255,0.82); color: #86868b;
+      backdrop-filter: blur(6px); z-index: 1;
+    }
+
+    .project-content { padding: 1.35rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .project-content h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.7rem; color: #1d1d1f; }
+    .project-text { font-size: 0.98rem; color: #424245; margin-bottom: 1rem; line-height: 1.65; }
+    .highlight-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; }
+    .highlight-chip { background: rgba(0,0,0,0.025); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 0.5rem 0.7rem; }
+    .chip-label { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86868b; margin-bottom: 2px; }
+    .chip-value { font-size: 0.84rem; font-weight: 600; color: #1d1d1f; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .tech-tag { display: inline-block; padding: 0.22rem 0.65rem; background: rgba(0,113,227,0.07); color: #0071e3; border-radius: 999px; font-size: 0.76rem; font-weight: 600; border: 1px solid rgba(0,113,227,0.18); letter-spacing: 0.01em; transition: background 0.2s, border-color 0.2s, transform 0.2s; cursor: default; user-select: none; }
+    .tech-tag:hover { background: rgba(0,113,227,0.14); border-color: rgba(0,113,227,0.32); transform: translateY(-1px); }
+    .project-links { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: auto; }
+    .project-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; padding: 0.75rem 1rem; background: #1d1d1f; color: #fff; text-decoration: none; border-radius: 999px; font-size: 0.92rem; font-weight: 600; transition: transform 0.2s, background-color 0.2s; white-space: nowrap; }
+    .project-button:hover { background: #2c2c2e; transform: translateY(-2px); }
+    .why-callout { background: rgba(255,255,255,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.06); border-radius: 24px; padding: 2rem 2.2rem; box-shadow: 0 12px 36px rgba(0,0,0,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2.5rem; align-items: start; }
+    @media (max-width: 680px) { .why-callout { grid-template-columns: 1fr; } }
+    .why-callout h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.5rem; grid-column: 1 / -1; }
+    .why-col p { font-size: 0.98rem; color: #424245; line-height: 1.75; }
+    .why-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.15rem; }
+    .why-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.9rem; background: rgba(0,113,227,0.06); color: #0071e3; border-radius: 999px; font-size: 0.82rem; font-weight: 600; border: 1px solid rgba(0,113,227,0.15); }
+    footer { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; text-align: center; padding: 2rem 0 3rem; color: #6e6e73; font-size: 0.95rem; }
+    .footer-links { display: flex; gap: 1.1rem; }
+    .footer-links a { color: #86868b; font-size: 1.05rem; text-decoration: none; transition: color 0.2s, transform 0.2s; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.04); }
+    .footer-links a:hover { color: #1d1d1f; transform: translateY(-2px); background: rgba(0,0,0,0.08); }
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
+      .header { flex-direction: column; align-items: flex-start; padding-left: 18px; padding-right: 18px; }
+      .nav ul { gap: 1rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body class="bg-pastel-flow">
+<div class="container">
+
+  <header class="header">
+    <h1><a href="index.html" class="logo-link">Long Tien Bui</a></h1>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#explorations">Explorations</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <nav class="breadcrumb">
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="index.html#explorations">Explorations</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Streamlit Dashboards</span>
+    </nav>
+
+    <div class="page-heading reveal">
+      <span class="eyebrow">Python · Visualisation · Deployment</span>
+      <h1>Streamlit<br />Dashboards</h1>
+      <p>
+        As part of my personal exploration with Python beyond coursework, I built and deployed
+        two Streamlit web apps — each solving a real, distinct problem. Both are publicly
+        accessible, version-controlled on GitHub, and live on the web.
+      </p>
+    </div>
+
+    <div class="dash-grid reveal">
+
+      <!-- ESG -->
+      <div class="project-item">
+        <div class="card-banner banner-esg">
+                  <img src="assets/streamlit1.png" alt="Team Retrospective Dashboard" class="banner-img" />
+          <span class="card-banner-label">Freelance · ESG</span>
+        </div>
+        <div class="project-content">
+          <h3>ESG Sunburst Visualisation App</h3>
+          <p class="project-text">
+            Built as a freelance-style task to make abstract ESG (Environmental, Social,
+            Governance) frameworks digestible for non-technical stakeholders.
+            The centrepiece is an interactive <strong>sunburst chart</strong> — a chart type
+            I deliberately sought out to learn. Users can upload their own data, build a
+            hierarchy node-by-node, undo steps, filter by ESG category, and export the
+            result as an image — all without writing code.
+          </p>
+          <div class="highlight-row">
+            <div class="highlight-chip"><span class="chip-label">Chart type</span><span class="chip-value">Sunburst (hierarchical)</span></div>
+            <div class="highlight-chip"><span class="chip-label">Data input</span><span class="chip-value">CSV / Excel upload</span></div>
+            <div class="highlight-chip"><span class="chip-label">Features</span><span class="chip-value">Filter · Undo · Export</span></div>
+            <div class="highlight-chip"><span class="chip-label">Context</span><span class="chip-value">Freelance demo</span></div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Plotly</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Sunburst Chart</span>
+            <span class="tech-tag">File Upload</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/TienLongBui/freelance-esg-2412" target="_blank" rel="noopener noreferrer" class="project-button">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIT5120 Retro -->
+      <div class="project-item">
+        <div class="card-banner banner-retro">
+          <img src="assets/streamlit2.png" alt="Team Retrospective Dashboard" class="banner-img" />
+          <span class="card-banner-label">Self-initiated · FIT5120</span>
+        </div>
+        <div class="project-content">
+          <h3>Team Retrospective Dashboard</h3>
+          <p class="project-text">
+            During the FIT5120 group project at Monash, I noticed coordination gaps within the
+            team. Rather than leaving it unaddressed, I proposed and led a solution: designing
+            a <strong>retrospective survey</strong>, collecting responses from teammates, and
+            building a dynamic Streamlit dashboard to visualise how collaboration health
+            evolved across sprint iterations — turning subjective feelings into something
+            actionable and visible.
+          </p>
+          <div class="highlight-row">
+            <div class="highlight-chip"><span class="chip-label">Origin</span><span class="chip-value">FIT5120 Group Project</span></div>
+            <div class="highlight-chip"><span class="chip-label">Data source</span><span class="chip-value">Team survey responses</span></div>
+            <div class="highlight-chip"><span class="chip-label">Problem solved</span><span class="chip-value">Team coordination</span></div>
+            <div class="highlight-chip"><span class="chip-label">Initiative</span><span class="chip-value">Self-proposed</span></div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Survey Data</span>
+            <span class="tech-tag">Team Analytics</span>
+            <span class="tech-tag">Agile / Retro</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/TienLongBui/fit5120-retrospective-dashboard" target="_blank" rel="noopener noreferrer" class="project-button">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="why-callout reveal">
+      <h2>Why Streamlit?</h2>
+      <div class="why-col">
+        <p>
+          Both projects were deliberate choices to build something <strong>end-to-end in Python</strong>.
+          Streamlit is free, Python-native with no context-switching to JavaScript, and deploying a live
+          web app takes a single command. Each project also let me practise the <strong>full pipeline at once</strong>
+          — data wrangling, visualisation, Git version control, and shipping a real accessible URL —
+          which is what data work looks like outside the classroom.
+        </p>
+      </div>
+      <div class="why-col">
+        <div class="why-pills">
+          <span class="why-pill"><i class="fas fa-check"></i> Free hosting</span>
+          <span class="why-pill"><i class="fas fa-check"></i> Python-native</span>
+          <span class="why-pill"><i class="fas fa-check"></i> End-to-end workflow</span>
+          <span class="why-pill"><i class="fas fa-check"></i> Git + deploy practice</span>
+          <span class="why-pill"><i class="fas fa-check"></i> Live accessible URL</span>
+          <span class="why-pill"><i class="fas fa-check"></i> Quick prototyping</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/TienLongBui" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/tbui-bib-mds/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>© 2025 Long Tien Bui</p>
+  </footer>
+
+</div>
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  function revealOnScroll() {
+    const triggerBottom = window.innerHeight * 0.88;
+    reveals.forEach(el => {
+      if (el.getBoundingClientRect().top < triggerBottom) el.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>
