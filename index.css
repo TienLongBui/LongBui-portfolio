@@ -170,6 +170,16 @@ body {
 	max-width: 620px;
 }
 
+/* based */
+.hero-content p.hero-meta {
+  font-size: 0.9rem;
+  font-weight: 520;
+  color: #86868b;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.01em;
+}
+
 .hero-button {
 	display: inline-flex;
 	align-items: center;
@@ -213,6 +223,8 @@ body {
 	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 	animation: float-soft 5s ease-in-out infinite;
 }
+
+
 
 /* Shared sections */
 .projects,
@@ -420,6 +432,13 @@ body {
 .detail-gallery {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1rem;
+	margin: 1.5rem 0 2rem;
+}
+
+.detail-gallery-dvp {
+	display: grid;
+	/* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
 	gap: 1rem;
 	margin: 1.5rem 0 2rem;
 }
@@ -637,6 +656,19 @@ footer {
 /* Hero image is clickable */
 .hero-image {
 	cursor: pointer;
+	transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* .hero-image:hover {
+  transform: translateY(-4px) scale(1.05);
+  filter: brightness(0.88);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18);
+} */
+
+.hero-image:hover {
+  transform: scale(1.04);
+  filter: brightness(1.15);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.4), 0 24px 60px rgba(0, 0, 0, 0.15);
 }
 
 .hero-image:focus-visible {
@@ -936,3 +968,135 @@ body.modal-open {
   color: #555;
   line-height: 1.7;
 }
+
+/* 2. Tech pill badges */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 1rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  background: rgba(0, 113, 227, 0.07);
+  color: #0071e3;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 113, 227, 0.18);
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.tech-tag:hover {
+  background: rgba(0, 113, 227, 0.14);
+  border-color: rgba(0, 113, 227, 0.32);
+  transform: translateY(-1px);
+}
+
+/* 3. Project image hover overlay */
+.project-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image-wrap .project-image {
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+  width: 100%;
+}
+
+.project-image-wrap:hover .project-image {
+  transform: scale(1.05);
+}
+
+.project-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.0) 0%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 1rem 1.1rem;
+  color: white;
+  font-weight: 650;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-image-wrap:hover .project-image-overlay {
+  opacity: 1;
+}
+
+/* 7. Footer social links */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.1rem;
+}
+
+.footer-links a {
+  color: #86868b;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.footer-links a:hover {
+  color: #1d1d1f;
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* 4. SELECTED EXPLORATION Staggered card reveal animation */
+@keyframes card-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.projects-stagger .project-item {
+  animation: card-slide-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.projects-stagger .project-item:nth-child(1) { animation-delay: 0ms; }
+.projects-stagger .project-item:nth-child(2) { animation-delay: 40ms; }
+.projects-stagger .project-item:nth-child(3) { animation-delay: 80ms; }
+.projects-stagger .project-item:nth-child(4) { animation-delay: 120ms; }
+.projects-stagger .project-item:nth-child(5) { animation-delay: 160ms; }
+.projects-stagger .project-item:nth-child(6) { animation-delay: 200ms; }
+
+/* Cards hidden before stagger triggers */
+.projects-stagger-pending .project-item {
+  opacity: 0;
+}
+
+

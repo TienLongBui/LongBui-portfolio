@@ -87,3 +87,25 @@ if (heroImage && heroModal) {
     });
   });
 }
+
+// 2. Staggered card reveal
+(function () {
+  const grids = document.querySelectorAll('.projects-container');
+
+  const staggerObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const grid = entry.target;
+          if (!grid.classList.contains('projects-stagger')) {
+            grid.classList.add('projects-stagger');
+          }
+          staggerObserver.unobserve(grid);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  grids.forEach((grid) => staggerObserver.observe(grid));
+})();
