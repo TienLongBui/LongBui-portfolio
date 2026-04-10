@@ -175,8 +175,22 @@ body {
 }
 
 @media (max-width: 500px) {
-	.hero { grid-template-columns: 1fr; gap: 2rem; }
-	.hero-image { justify-self: center; max-width: 280px; }
+	.hero { grid-template-columns: 1.2fr 0.8fr; gap: 0.75rem; padding: 1.5rem 0 2rem; }
+	.hero-content h1 { font-size: clamp(1.45rem, 7.5vw, 2rem); letter-spacing: -0.04em; }
+	.hero-content h3 { font-size: 0.82rem; margin-bottom: 0.7rem; }
+	.hero-content p  { font-size: 0.82rem; line-height: 1.55; margin-bottom: 0.9rem; }
+	.hero-content p.hero-meta { display: none; }
+	.hero-stack { margin: 0.7rem 0 1rem; }
+	.stack-logos img { height: 20px; }
+	.stack-logos { gap: 0.75rem; }
+	.hero-button { font-size: 0.82rem; padding: 0.62rem 0.85rem; }
+	.hero-image { border-radius: 16px; align-self: center; }
+}
+
+/* Tiny phones only — stack here */
+@media (max-width: 340px) {
+	.hero { grid-template-columns: 1fr; gap: 1.5rem; }
+	.hero-image { justify-self: center; max-width: 220px; }
 }
 
 /* ===== SHARED SECTIONS ===== */
