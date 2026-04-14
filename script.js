@@ -220,6 +220,21 @@ if (heroImage && heroModal) {
     }
   }
 
+  /* ---- Snap currentIndex back into the "real" zone (N … 2N-1) ---- */
+  // Called manually on tab-return because transitionend may never fire
+  // when the browser suspends animations in background tabs.
+  function snapToRealZone() {
+    if (!isInfinite) return;
+    if (currentIndex >= N * 2) {
+      goTo(currentIndex - N, false);
+    } else if (currentIndex < N) {
+      goTo(currentIndex + N, false);
+    } else {
+      // Already in real zone — just re-stamp the transform to be safe
+      goTo(currentIndex, false);
+    }
+  }
+
   /* ---- Infinite loop jump (called after CSS transition ends) ---- */
   // FIX #1: Filter to ONLY react to transitions that originated on the track itself,
   // not on child cards (hover transform, etc.) which bubble up and can cause
@@ -249,6 +264,27 @@ if (heroImage && heroModal) {
     clearInterval(autoplayTimer);
     autoplayTimer = null;
   }
+
+  /* ---- Page Visibility — FIX #4 ----
+     Problem: when the user switches to another tab, the browser throttles/suspends
+     CSS transitions. The autoplay interval may still tick in the background (or catch
+     up all at once on return), pushing currentIndex deep into clone territory. Because
+     transitionend never fires while hidden, the infinite-loop jump never corrects it.
+     Result: on tab-return the track is positioned off-screen → white flash → snap back.
+
+     Fix:
+       • Stop autoplay immediately when the tab is hidden.
+       • On return, manually snap currentIndex back into the real zone (N…2N-1) with
+         no animation, then restart autoplay cleanly.
+  */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoplay();
+    } else {
+      snapToRealZone();   // correct any drift caused while tab was hidden
+      startAutoplay();    // restart the timer fresh
+    }
+  });
 
   /* ---- Button listeners ---- */
   if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoplay(); goTo(currentIndex - 1); });
